@@ -1,2 +1,4 @@
 ---
-# tasks file for common
+# Playbook with all common things
+
+- include: packages.yml
