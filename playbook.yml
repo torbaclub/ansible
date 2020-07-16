@@ -8,3 +8,11 @@
 
   roles:
     - common
+
+- name: Server Configuration
+  hosts: all
+  become: yes
+  become_method: sudo
+
+  roles:
+    - server

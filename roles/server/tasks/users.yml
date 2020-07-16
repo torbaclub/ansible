@@ -1,0 +1,26 @@
+---
+# Playbook to add groups and users
+
+- group:
+    name: sudo
+    state: present
+
+- group:
+    name: torba
+    state: present
+
+- name: Add user gremax
+  user:
+    createhome: yes
+    groups: sudo,torba
+    home: /home/gremax
+    name: gremax
+    shell: /bin/bash
+    skeleton: /etc/skel
+    state: present
+    system: no
+
+- authorized_key:
+    user: gremax
+    state: present
+    key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQD5FG3xEPGohtT8eIib75s91fyZeZdOGLMCEuCKDj1CItteWX6nUvSXiaz1owgMUBg96iPzGPyvKZwAhZ3kRAewaBJzOiU7f05FxxCfIQ5/qnoJpkfXE4qL3IyaN8OEpjFw1LE31FKvdejGFjxwPimZdCX3/FLMGRqi/5RMVJcNTbvO3Dge4AMIMvdA3Vzo1txFFS+otWrjA9CxvbwzfregFbl8xde747GBFNLSQw/oVUoJOiC56mBsR8f2tgxwpcJRmYx8knwWPkd1hB5p5dyU6tvF1ZmSMNXs2YuOiJ6CEVbDo40PmqMujkxPemNYLHL+/XFCB83ydptnNxOFdSLEBFf/cWhMMagEYl+Mbak3bcr86s5Gm6jLAmgNtxD2fcvaoXG1fP02jE5Nw6xzWSFTuEldpgnOUKutSM2pPGZipBZSKrIf64CzD59FzgyKxULr9jQCg5jAMs6JZvpFr0899brD3QGqLE/F296a1re4yiFP4gUYNvIhF2amc2/rKrQiSJyYGM8oXwNFYvufLZ8Oc4djubiR0FfdZRLiy2FSLpOoAWMr9eT/w2Yc63rAfakkQSpXAVfyaJkVUgvLOgFAh6JY7S0kXXRocjgQT3SM0iYyayE7xElfiJ191LMgcNjnTq9raORZf3Ew873NynDsom0PPXJoN3dGc3TBl1UPCQ=="
