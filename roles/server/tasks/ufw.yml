@@ -1,0 +1,13 @@
+---
+# task to manage ufw rules
+
+- name: Setup ufw
+  ufw:
+    state: enabled
+    policy: deny
+
+- name: Allow ssh traffic
+  ufw:
+    rule: allow
+    proto: tcp
+    port: '22'
