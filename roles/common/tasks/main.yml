@@ -2,3 +2,4 @@
 # Playbook with all common things
 
 - include: packages.yml
+- include: sudo.yml
