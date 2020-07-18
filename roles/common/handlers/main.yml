@@ -1,2 +1,4 @@
 ---
 # handlers file for common
+
+- include: sshd.yml

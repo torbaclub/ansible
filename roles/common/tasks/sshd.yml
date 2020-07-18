@@ -1,0 +1,19 @@
+---
+- name: Secure sshd config
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    state: present
+    regexp: "{{ item.regexp }}"
+    line: "{{ item.line }}"
+  with_items:
+    - regexp: '^#?Port 22'
+      line: 'Port 22'
+    - regexp: '^#?PubkeyAuthentication'
+      line: 'PubkeyAuthentication yes'
+    - regexp: '^#?UsePAM'
+      line: 'UsePAM no'
+    - regexp: '^#?PasswordAuthentication'
+      line: 'PasswordAuthentication no'
+    - regexp: '^#?PermitRootLogin'
+      line: 'PermitRootLogin without-password'
+  notify: restart sshd
