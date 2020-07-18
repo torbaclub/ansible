@@ -1,18 +1,11 @@
 ---
 # Overall playbook
 
-- name: Baseline Configuration
-  hosts: all
-  become: yes
-  become_method: sudo
-
-  roles:
-    - common
-
 - name: Server Configuration
   hosts: all
   become: yes
   become_method: sudo
 
   roles:
+    - common
     - server

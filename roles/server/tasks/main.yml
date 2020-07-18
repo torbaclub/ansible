@@ -1,4 +1,5 @@
 ---
 # tasks file for server
 
+- include: packages.yml
 - include: users.yml

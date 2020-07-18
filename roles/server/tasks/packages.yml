@@ -1,0 +1,27 @@
+---
+# Playbook to install needed packages
+
+- name: Install packages
+  apt: 
+    name: "{{ packages }}"
+    state: present
+    update_cache: yes
+  vars:
+    packages:
+      - bzip2
+      - curl
+      - elinks
+      - fish
+      - fortune
+      - git
+      - htop
+      - irssi
+      - lynx
+      - mc
+      - mc-data
+      - mutt
+      - neofetch
+      - neomutt
+      - screen
+      - tmux
+      - vim
