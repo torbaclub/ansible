@@ -11,7 +11,7 @@
     - regexp: '^#?PubkeyAuthentication'
       line: 'PubkeyAuthentication yes'
     - regexp: '^#?UsePAM'
-      line: 'UsePAM no'
+      line: 'UsePAM yes'
     - regexp: '^#?PasswordAuthentication'
       line: 'PasswordAuthentication no'
     - regexp: '^#?PermitRootLogin'
