@@ -10,4 +10,7 @@
   ufw:
     rule: allow
     proto: tcp
-    port: '22'
+    port: '{{ item }}'
+  with_items:
+    - '22'
+    - '80'
