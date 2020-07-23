@@ -6,3 +6,16 @@
     name: nginx
     state: present
     update_cache: yes
+
+- name: Deploy nginx config
+  copy:
+    src: ../files/etc/nginx/sites-available/default
+    dest: /etc/nginx/sites-available/default
+    backup: true
+
+- name: Create symlink
+  file:
+    src: /etc/nginx/sites-available/default
+    dest: /etc/nginx/sites-enabled/default
+    state: link
+  notify: restart nginx
