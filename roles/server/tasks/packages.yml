@@ -22,6 +22,7 @@
       - mutt
       - neofetch
       - neomutt
+      - oidentd
       - screen
       - tmux
       - vim
