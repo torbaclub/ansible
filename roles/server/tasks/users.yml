@@ -9,6 +9,12 @@
     name: torba
     state: present
 
+- name: add znc group
+  group:
+    name: znc
+    state: present
+    system: yes
+
 - name: Add user gremax
   user:
     createhome: yes
@@ -24,3 +30,14 @@
     user: gremax
     state: present
     key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQD5FG3xEPGohtT8eIib75s91fyZeZdOGLMCEuCKDj1CItteWX6nUvSXiaz1owgMUBg96iPzGPyvKZwAhZ3kRAewaBJzOiU7f05FxxCfIQ5/qnoJpkfXE4qL3IyaN8OEpjFw1LE31FKvdejGFjxwPimZdCX3/FLMGRqi/5RMVJcNTbvO3Dge4AMIMvdA3Vzo1txFFS+otWrjA9CxvbwzfregFbl8xde747GBFNLSQw/oVUoJOiC56mBsR8f2tgxwpcJRmYx8knwWPkd1hB5p5dyU6tvF1ZmSMNXs2YuOiJ6CEVbDo40PmqMujkxPemNYLHL+/XFCB83ydptnNxOFdSLEBFf/cWhMMagEYl+Mbak3bcr86s5Gm6jLAmgNtxD2fcvaoXG1fP02jE5Nw6xzWSFTuEldpgnOUKutSM2pPGZipBZSKrIf64CzD59FzgyKxULr9jQCg5jAMs6JZvpFr0899brD3QGqLE/F296a1re4yiFP4gUYNvIhF2amc2/rKrQiSJyYGM8oXwNFYvufLZ8Oc4djubiR0FfdZRLiy2FSLpOoAWMr9eT/w2Yc63rAfakkQSpXAVfyaJkVUgvLOgFAh6JY7S0kXXRocjgQT3SM0iYyayE7xElfiJ191LMgcNjnTq9raORZf3Ew873NynDsom0PPXJoN3dGc3TBl1UPCQ=="
+
+- name: Add system znc user
+  user:
+    createhome: yes
+    comment: Account to run ZNC daemon
+    groups: znc
+    home: /var/lib/znc
+    name: znc
+    shell: /usr/sbin/nologin
+    state: present
+    system: yes

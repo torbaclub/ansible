@@ -1,6 +1,12 @@
 ---
 # Playbook to install needed packages
 
+- name: Add repos
+  apt_repository:
+    repo: 'deb http://deb.debian.org/debian buster-backports main contrib'
+    state: present
+    update_cache: yes
+
 - name: Install packages
   apt: 
     name: "{{ packages }}"
@@ -26,3 +32,10 @@
       - screen
       - tmux
       - vim
+
+- name: Update the repository cache and install ZNC using default release buster-backports
+  apt:
+    name: znc
+    state: latest
+    default_release: buster-backports
+    update_cache: yes

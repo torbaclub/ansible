@@ -1,2 +1,22 @@
 ---
-# defaults file for server
+# defaults for server
+
+znc_conf:
+  admin_user:
+    znc_username: gremax
+    nick: gremax
+    alt_nick: gremax
+    ident: gremax
+    real_name: "Max"
+    password:
+      hash: "{{ vault_znc_conf.admin_user.password.hash }}"
+      salt: "{{ vault_znc_conf.admin_user.password.salt }}"
+    primary_network:
+      network_name: freenode
+      server: "chat.freenode.net +6697"
+  listener:
+    port: 5000
+    ipv4: true
+    ipv6: true
+    ssl: true
+  version: 1.8.1

@@ -1,0 +1,43 @@
+---
+# setup znc bouncer
+
+- name: Import vault-encrypted variables
+  include_vars: vault.yml
+
+- name: Create znc config directory
+  file:
+    state: directory
+    path: /var/lib/znc/configs/
+    mode: 0700
+    owner: znc
+    group: znc
+
+- name: Deploy znc config file
+  template:
+    src: znc.conf
+    dest: /var/lib/znc/configs/znc.conf
+    force: no
+    mode: 0600
+    owner: znc
+    group: znc
+
+- name: Deploy znc systemd target
+  copy:
+    dest: /etc/systemd/system/znc.service
+    content: |
+      [Install]
+      WantedBy=multi-user.target
+
+      [Unit]
+      Description=ZNC, an advanced IRC bouncer
+      After=network-online.target
+
+      [Service]
+      ExecStart=/usr/bin/znc -f --datadir=/var/lib/znc
+      ExecReload=/bin/kill -HUP $MAINPID
+      User=znc
+
+- name: Enable znc service
+  service:
+    name: znc
+    state: started
