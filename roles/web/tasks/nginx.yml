@@ -1,0 +1,32 @@
+---
+# Playbook to configure nginx
+
+- name: Install nginx
+  apt:
+    name: nginx
+    state: present
+    update_cache: yes
+
+- name: Create letsencrypt directory
+  file:
+    name: /var/www/letsencrypt
+    state: directory
+
+- name: Deploy default nginx config
+  copy:
+    src: ../files/etc/nginx/sites-available/default
+    dest: /etc/nginx/sites-available/default
+    backup: true
+
+- name: Deploy letsencrypt nginx config
+  copy:
+    src: ../files/etc/nginx/sites-available/letsencrypt
+    dest: /etc/nginx/sites-available/letsencrypt
+    backup: true
+
+- name: Create symlink
+  file:
+    src: /etc/nginx/sites-available/letsencrypt
+    dest: /etc/nginx/sites-enabled/letsencrypt
+    state: link
+  notify: restart nginx
